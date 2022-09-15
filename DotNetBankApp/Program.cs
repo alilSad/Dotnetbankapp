@@ -5,6 +5,7 @@ namespace DotNetBankApp
 {
     class Program
     {
+        
         public static string unInput;
         public static string passInput;
         public static Boolean correctDeet = false;
@@ -12,6 +13,8 @@ namespace DotNetBankApp
 
         static void enterDetails()
         {
+
+            
 
             Console.WriteLine("------------------------------------------");
             Console.WriteLine("        Welcome to Simple Banking         ");
@@ -27,9 +30,14 @@ namespace DotNetBankApp
 
             Console.SetCursorPosition(18, 6);
             unInput = Console.ReadLine();
+
+            Console.WriteLine(unInput + ".txt");
+
             Console.SetCursorPosition(18, 7);
             passInput = Console.ReadLine();
             Console.SetCursorPosition(2, 10);
+
+
 
             Login();
 
