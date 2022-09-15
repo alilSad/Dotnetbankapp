@@ -1,9 +1,68 @@
 ﻿using System;
+using System.IO;
 
 namespace DotNetBankApp
 {
     class Program
     {
+        public static string unInput;
+        public static string passInput;
+        //when you log out remeber to set it back to false!
+        public static Boolean correctDeet = false;
+
+
+
+
+        static void Login() {
+
+            try
+            {
+                string[] lines = File.ReadAllLines("login.txt");
+
+                foreach (string set in lines)
+                {
+                    string[] splits = set.Split('|');
+
+                    //tester dw
+                    //Console.WriteLine("{0}{1}", splits[0], splits[1]);
+
+                    if (splits[0] == unInput && splits[1] == passInput)
+                    {
+                        correctDeet = true;
+                        
+                    }
+
+                    else {
+
+                       //this is probably not the best way to do it?
+                    
+                    }
+
+
+                }
+
+                if (correctDeet)
+                {
+                    Console.WriteLine("Welcome {0}!", unInput);
+
+                }
+                else {
+                    Console.WriteLine("Invalid details, please try again");
+
+
+                }
+
+
+            }
+
+            catch(FileNotFoundException e) {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Please press any key to exit application. Contact administrator for support.");
+                Console.ReadKey();
+            
+            }
+
+        }
         static void Main(string[] args)
         {
 
@@ -21,30 +80,20 @@ namespace DotNetBankApp
             Console.WriteLine("|------------------------------------------|");
 
             Console.SetCursorPosition(18, 6);
-            string unInput = Console.ReadLine();
+            unInput = Console.ReadLine();
             Console.SetCursorPosition(18, 7);
-            string passInput = Console.ReadLine();
-            
-            try {
-                string[] lines = System.IO.File.ReadAllLines("login.txt");
+            passInput = Console.ReadLine();
+            Console.SetCursorPosition(3, 8);
 
-                foreach (string set in lines) {
-                    string[] splits = set.Split('|');
-
-                    // splits [0] will be username and splits[1] should be password
-                    // call with {0} and {1}
-                    // somehow i need to check user input against each line, the foreach loop should do this. please do asap me ;-;
-                    //if no match display eeror message
-                
-                }
+            Login();
             
-            
-            }
-
-            catch { }
 
 
 
         }
+
+  
+
+
     }
 }
