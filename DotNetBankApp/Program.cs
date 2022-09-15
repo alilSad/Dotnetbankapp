@@ -9,7 +9,7 @@ namespace DotNetBankApp
         public static string unInput;
         public static string passInput;
         public static Boolean correctDeet = false;
-        public static string EnteredVal = "";
+        public static string temp = "";
         
 
         static void enterDetails()
@@ -34,7 +34,7 @@ namespace DotNetBankApp
             Console.SetCursorPosition(18, 7);
             // passInput = Console.ReadLine();
             
-            CheckPassword(EnteredVal);
+            CheckPassword(temp);
 
            Login();
 

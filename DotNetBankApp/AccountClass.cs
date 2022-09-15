@@ -20,6 +20,7 @@ namespace DotNetBankApp
         public static string email;
 
         public static int accountNumber;
+        public static int accountBalance; 
 
         public static void MainMenu() {
 
@@ -79,7 +80,7 @@ namespace DotNetBankApp
                     Option1();
                     break;
                 case 2:
-
+                    Option2();
                     break;
                 case 3:
 
@@ -101,7 +102,7 @@ namespace DotNetBankApp
             }
 
         }
-
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         //Create new account
 
         static void Option1() {
@@ -161,9 +162,21 @@ namespace DotNetBankApp
             }
 
             //check if the info is correct? 
+            Console.WriteLine("\nWould you like to submit these details? Enter Y to confirm, \nEnter any other button to try again");
 
-            Option1Confirm();
+            if (Console.ReadLine() == "y")
+            {
+                Option1Confirm();
 
+            }
+            else {
+                Console.Clear();
+                Option1();
+            
+            }
+
+
+            Console.WriteLine("------------------------------------------");
             Console.WriteLine("Account created. Details will be provided via email");
             Console.WriteLine("Account number is: " + accountNumber);
             Console.WriteLine("Press any button to go back to the menu");
@@ -218,6 +231,7 @@ namespace DotNetBankApp
                 sw.WriteLine("Phone|" + phone);
                 sw.WriteLine("Email|" + email);
                 sw.WriteLine("AccountNo|" + accountString);
+                sw.WriteLine("Balace|0");
 
 
             }
@@ -251,6 +265,73 @@ namespace DotNetBankApp
            
             
         }
+
+        //----------------------------------------------------------------------------------------------------------------------------------------------
+        //line break for when i scroll
+        //search for an account
+        static void Option2() {
+        
+            
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("           Search for an account          ");
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("           Enter account number           ");
+            Console.WriteLine("\nAccount Number:                         ");
+            Console.WriteLine("------------------------------------------");
+
+            Console.SetCursorPosition(16, 5);
+            string accountNum;
+
+            try
+            {
+                accountNum = Console.ReadLine();
+                if (!int.TryParse(accountNum, out accountNumber))
+                {
+                Console.WriteLine("\nPlease put a proper account number");
+                Console.ReadKey();
+                Console.Clear();
+                Option2();
+
+                }
+            else if (accountNum.Length > 10)
+                {
+                Console.WriteLine("\nPlease put a proper account number");
+                Console.ReadKey();
+                Console.Clear();
+                Option2();
+
+                }
+
+                string[] lines = File.ReadAllLines(accountNum + ".txt");
+                int i = 0;
+                while (i < 7) {
+                    foreach (string set in lines) { 
+                    
+                    
+                    
+                    }
+                    i++;
+
+                }
+                
+            
+
+            }
+            catch(FileNotFoundException e) {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Account file could not be found.");
+                Console.ReadKey();
+                Console.Clear();
+                Option2();
+            
+            }
+
+
+
+
+        }
+
+
 
 
 
