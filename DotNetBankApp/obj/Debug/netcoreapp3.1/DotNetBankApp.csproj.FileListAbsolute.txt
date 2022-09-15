@@ -1,0 +1,14 @@
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\bin\Debug\netcoreapp3.1\DotNetBankApp.exe
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\bin\Debug\netcoreapp3.1\DotNetBankApp.deps.json
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\bin\Debug\netcoreapp3.1\DotNetBankApp.runtimeconfig.json
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\bin\Debug\netcoreapp3.1\DotNetBankApp.runtimeconfig.dev.json
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\bin\Debug\netcoreapp3.1\DotNetBankApp.dll
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\bin\Debug\netcoreapp3.1\DotNetBankApp.pdb
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\obj\Debug\netcoreapp3.1\DotNetBankApp.csproj.AssemblyReference.cache
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\obj\Debug\netcoreapp3.1\DotNetBankApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\obj\Debug\netcoreapp3.1\DotNetBankApp.AssemblyInfoInputs.cache
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\obj\Debug\netcoreapp3.1\DotNetBankApp.AssemblyInfo.cs
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\obj\Debug\netcoreapp3.1\DotNetBankApp.csproj.CoreCompileInputs.cache
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\obj\Debug\netcoreapp3.1\DotNetBankApp.dll
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\obj\Debug\netcoreapp3.1\DotNetBankApp.pdb
+D:\Documents\assignment dot net\DotNetBankApp\DotNetBankApp\obj\Debug\netcoreapp3.1\DotNetBankApp.genruntimeconfig.cache
