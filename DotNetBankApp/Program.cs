@@ -9,7 +9,8 @@ namespace DotNetBankApp
         public static string unInput;
         public static string passInput;
         public static Boolean correctDeet = false;
-
+        public static string EnteredVal = "";
+        
 
         static void enterDetails()
         {
@@ -31,16 +32,55 @@ namespace DotNetBankApp
             Console.SetCursorPosition(18, 6);
             unInput = Console.ReadLine();
             Console.SetCursorPosition(18, 7);
-            passInput = Console.ReadLine();
-            Console.SetCursorPosition(2, 10);
+            // passInput = Console.ReadLine();
+            
+            CheckPassword(EnteredVal);
 
-
-
-            Login();
+           Login();
 
 
 
         }
+
+        static void CheckPassword(string EnterText)
+        {
+            
+            try
+            {
+                
+                Console.Write(EnterText);
+                passInput = "";
+                do
+                {
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+                    // Backspace Should Not Work  
+                    if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
+                    {
+                        passInput += key.KeyChar;
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        if (key.Key == ConsoleKey.Backspace && passInput.Length > 0)
+                        {
+                            passInput = passInput.Substring(0, (passInput.Length - 1));
+                            Console.Write("\b \b");
+                        }
+                        else if (key.Key == ConsoleKey.Enter)
+                        {
+                            
+                                break;
+                            
+                        }
+                    }
+                } while (true);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
 
         static void Login() {
 
@@ -65,7 +105,7 @@ namespace DotNetBankApp
 
                 if (correctDeet)
                 {
-                    Console.WriteLine("Welcome {0}! Press any button to continue!", unInput);
+                    Console.WriteLine("\nWelcome {0}! Press any button to continue!", unInput);
                     Console.ReadKey();
                     Console.Clear();
                     AccountClass.MainMenu();

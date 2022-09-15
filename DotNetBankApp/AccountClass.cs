@@ -2,6 +2,8 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using System.Net.Mail;
+using System.Net;
 
 namespace DotNetBankApp
 {
@@ -209,8 +211,42 @@ namespace DotNetBankApp
 
             }
 
+            using (StreamWriter sw = File.CreateText(accountString + ".txt")) {
+                sw.WriteLine("First Name|" + firstName);
+                sw.WriteLine("Last Name|" + lastName);
+                sw.WriteLine("Address|" + address);
+                sw.WriteLine("Phone|" + phone);
+                sw.WriteLine("Email|" + email);
+                sw.WriteLine("AccountNo|" + accountString);
+
+
+            }
+            try {
+
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Credentials = new NetworkCredential("dotnettestmail33@gmail.com", "yxcurziyvoziaopv");
+
+                message.From = new MailAddress("dotnettestmail33@gmail.com");
+                message.To.Add(new MailAddress("dotnettestmail33@gmail.com"));
+                message.Subject = "Test";
+                message.Body = "Thank you " + firstName + lastName + "\nYour details are as follows: \nAddress: " + address + "\nPhone number: " + phone;
+                Console.WriteLine("Pending, please wait.");
+                smtp.Send(message);
             
-            
+            }
+
+            catch(Exception e) {
+                Console.WriteLine(e);
+                Console.ReadLine();
+            }
+
 
            
             
