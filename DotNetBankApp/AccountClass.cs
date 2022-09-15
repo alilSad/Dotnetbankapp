@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
@@ -162,7 +163,11 @@ namespace DotNetBankApp
             Option1Confirm();
 
             Console.WriteLine("Account created. Details will be provided via email");
-            Console.WriteLine("Account number is: ");
+            Console.WriteLine("Account number is: " + accountNumber);
+            Console.WriteLine("Press any button to go back to the menu");
+            Console.ReadKey();
+            Console.Clear();
+            MainMenu();
 
         }
 
@@ -191,20 +196,24 @@ namespace DotNetBankApp
         
         }
 
+      
 
         public static void Option1Confirm() {
             accountNumber = 100000;
-
             var accountString = Convert.ToString(accountNumber);
+
+
+            while (File.Exists(accountString + ".txt") && accountNumber < 99999999) {
+                accountNumber++;
+                accountString = Convert.ToString(accountNumber);
+
+            }
+
+            
             
 
-            // if (!File.Exists(accountString,".txt")) {
+           
             
-            
-            
-            //}
-
-        
         }
 
 

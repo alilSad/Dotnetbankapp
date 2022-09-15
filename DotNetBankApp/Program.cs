@@ -30,9 +30,6 @@ namespace DotNetBankApp
 
             Console.SetCursorPosition(18, 6);
             unInput = Console.ReadLine();
-
-            Console.WriteLine(unInput + ".txt");
-
             Console.SetCursorPosition(18, 7);
             passInput = Console.ReadLine();
             Console.SetCursorPosition(2, 10);
