@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net.Mail;
 using System.Net;
+using System.Linq;
 
 namespace DotNetBankApp
 {
@@ -231,7 +232,7 @@ namespace DotNetBankApp
                 sw.WriteLine("Phone|" + phone);
                 sw.WriteLine("Email|" + email);
                 sw.WriteLine("AccountNo|" + accountString);
-                sw.WriteLine("Balace|0");
+                sw.WriteLine("Balance|0");
 
 
             }
@@ -282,64 +283,96 @@ namespace DotNetBankApp
             Console.SetCursorPosition(16, 5);
             string accountNum;
 
-            try
-            {
-                accountNum = Console.ReadLine();
-                if (!int.TryParse(accountNum, out accountNumber))
-                {
-                Console.WriteLine("\nPlease put a proper account number");
-                Console.ReadKey();
-                Console.Clear();
-                Option2();
-
-                }
-            else if (accountNum.Length > 10)
-                {
-                Console.WriteLine("\nPlease put a proper account number");
-                Console.ReadKey();
-                Console.Clear();
-                Option2();
-
-                }
-
-                string[] lines = File.ReadAllLines(accountNum + ".txt");
-                int i = 0;
-                while (i < 7) {
-                    foreach (string set in lines) { 
-                    
-                    
-                    
-                    }
-                    i++;
-
-                }
-                
             
+            
+                accountNum = Console.ReadLine();
+                Console.WriteLine("\n");
 
-            }
-            catch(FileNotFoundException e) {
-                Console.WriteLine(e.Message);
+
+            if (File.Exists(accountNum + ".txt"))
+            {
+                //string[] lines = File.ReadAllLines(accountNum + ".txt");
+
+                //i only took the first 7 lines because i didn't want to print the deposit and withdraw stuff.
+                string[] lines = File.ReadLines(accountNum + ".txt").Take(7).ToArray();
+
+                Console.WriteLine("------------------------------------------");
+                Console.WriteLine("              Account Details             ");
+                Console.WriteLine("------------------------------------------");
+
+                foreach (string set in lines)
+                {
+
+                    string[] splits = set.Split('|');
+
+
+                    Console.WriteLine("{0}: {1}", splits[0], splits[1]);
+
+                }
+
+                Console.WriteLine("------------------------------------------");
+                Console.WriteLine("Check another account? Enter Y to confirm. \nEnter any other button to go back to the menu.");
+                if (Console.ReadLine() == "y")
+                {
+                    Console.Clear();
+                    Option2();
+
+                }
+                else {
+                    Console.Clear();
+                    MainMenu();
+                }
+
+
+
+
+
+            } else if (!int.TryParse(accountNum, out accountNumber))
+            {
+                Console.WriteLine("\nPlease put a proper account number");
+                Console.ReadKey();
+                Console.Clear();
+                Option2();
+
+            } else if (accountNum.Length > 10)
+            {
+                Console.WriteLine("\nPlease put a proper account number");
+                Console.ReadKey();
+                Console.Clear();
+                Option2();
+
+            } else {
+
                 Console.WriteLine("Account file could not be found.");
                 Console.ReadKey();
                 Console.Clear();
                 Option2();
-            
+
             }
-
-
-
-
         }
-
-
-
-
-
-        }
-
-
+           
 
     }
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+        
+
+
+
+    
 
 
 
