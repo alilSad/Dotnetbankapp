@@ -66,7 +66,7 @@ namespace DotNetBankApp
                     deposit = Console.ReadLine();
                     Console.SetCursorPosition(1, 8);
 
-                    if (double.TryParse(deposit, out validDep))
+                    if (double.TryParse(deposit, out validDep) && validDep > 0)
                     {
 
                         
@@ -197,7 +197,7 @@ namespace DotNetBankApp
                     withdraw = Console.ReadLine();
                     Console.SetCursorPosition(1, 8);
 
-                    if (double.TryParse(withdraw, out validWith))
+                    if (double.TryParse(withdraw, out validWith) && validWith > 0)
                     {
 
 

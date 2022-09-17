@@ -74,17 +74,15 @@ namespace DotNetBankApp
             }
 
         }
-
+    //----------------------------------------------------------------------------------------------------------------
         static void selector() {
             Console.Clear();
             switch (menuOption) {
 
-                case 1:
-                   
+                case 1: 
                     Option1();                   
                     break;
-                case 2:
-                  
+                case 2:             
                     Option2();
                     break;
                 case 3:                 
@@ -98,7 +96,6 @@ namespace DotNetBankApp
                     Option5();                    
                     break;
                 case 6:
-
                     Option6();
                     break;
                 case 7:
@@ -278,7 +275,6 @@ namespace DotNetBankApp
         //search for an account
         static void Option2() {
         
-            
             Console.WriteLine("------------------------------------------");
             Console.WriteLine("           Search for an account          ");
             Console.WriteLine("------------------------------------------");
@@ -291,30 +287,11 @@ namespace DotNetBankApp
             accountNum = Console.ReadLine();
             Console.WriteLine("\n");
 
-
             if (Search(accountNum))
             {
 
-
                 //i only took the first 7 lines because i didn't want to print the deposit and withdraw stuff.
-                string[] lines = File.ReadLines(accountNum + ".txt").Take(7).ToArray();
-
-
-                Console.WriteLine("------------------------------------------");
-                Console.WriteLine("              Account Details             ");
-                Console.WriteLine("------------------------------------------");
-
-                foreach (string set in lines)
-                {
-
-                    string[] splits = set.Split('|');
-
-
-                    Console.WriteLine("{0}: {1}", splits[0], splits[1]);
-
-                }
-
-                Console.WriteLine("------------------------------------------");
+                present(accountNum);
                 Console.WriteLine("Check another account? Enter Y to confirm. \nEnter any other button to go back to the menu.");
                 if (Console.ReadLine() == "y")
                 {
@@ -327,9 +304,6 @@ namespace DotNetBankApp
                     Console.Clear();
                     MainMenu();
                 }
-
-
-
 
 
             }
@@ -356,14 +330,10 @@ namespace DotNetBankApp
             Console.WriteLine("\n");
             sendThis = "";
 
-            if (File.Exists(accountNum + ".txt"))
+            if (Search(accountNum))
             {
-
-
-                
+    
                 string[] lines = File.ReadLines(accountNum + ".txt").Reverse().Take(5).ToArray();
-
-                
 
                 foreach (string set in lines)
                 {
@@ -400,9 +370,7 @@ namespace DotNetBankApp
                     
 
                 }
-                
-
-                
+                      
 
                 Console.WriteLine("------------------------------------------");
                 Console.WriteLine("Would you like to email the statement? Enter Y to confirm. \nOr any other key to exit to menu.");
@@ -425,36 +393,12 @@ namespace DotNetBankApp
 
 
             }
-            else if (!int.TryParse(accountNum, out accountNumber))
-            {
-                Console.WriteLine("\nPlease put a proper account number");
-                Console.ReadKey();
-                Console.Clear();
-                Option5();
+            else { 
+            Option5();
 
             }
-            else if (accountNum.Length > 10)
-            {
-                Console.WriteLine("\nPlease put a proper account number");
-                Console.ReadKey();
-                Console.Clear();
-                Option5();
-
-            }
-            else
-            {
-
-                Console.WriteLine("Account file could not be found.");
-                Console.ReadKey();
-                Console.Clear();
-                Option5();
-
-            }
-
-
 
         }
-
 
         static void Option5Confirm() {
 
@@ -470,8 +414,6 @@ namespace DotNetBankApp
                 smtp.UseDefaultCredentials = false;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Credentials = new NetworkCredential("dotnettestmail33@gmail.com", "yxcurziyvoziaopv");
-
-                //format the email to look nice and relevant
 
                 message.From = new MailAddress("dotnettestmail33@gmail.com");
                 message.To.Add(new MailAddress("dotnettestmail33@gmail.com"));
@@ -535,17 +477,13 @@ namespace DotNetBankApp
                 Option6();
             
             }
-            
-
-
 
         }
-
+        //-------------------------------------------------------------------------------------------------------
 
         public static bool Search(string accountNum) {
 
-
-           
+       
             Console.WriteLine("\n");
 
             if (File.Exists(accountNum + ".txt"))
