@@ -1,7 +1,8 @@
-First Name|dssdf
-Last Name|sdfsd
-Address|sdf
+First Name|poopa 
+Last Name|boopa
+Address|poop house
 Phone|1234567890
 Email|dotnettestmail33@gmail.com
 AccountNo|100000
-Balace|0
+Balance|100
+17.09.2022|Deposit|100|100

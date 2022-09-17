@@ -21,7 +21,7 @@ namespace DotNetBankApp
         public static string email;
 
         public static int accountNumber;
-        public static int accountBalance; 
+        
 
         public static void MainMenu() {
 
@@ -84,7 +84,7 @@ namespace DotNetBankApp
                     Option2();
                     break;
                 case 3:
-
+                    AccountHandle.Option3();
                     break;
                 case 4:
 
@@ -251,7 +251,7 @@ namespace DotNetBankApp
                 message.From = new MailAddress("dotnettestmail33@gmail.com");
                 message.To.Add(new MailAddress("dotnettestmail33@gmail.com"));
                 message.Subject = "Test";
-                message.Body = "Thank you " + firstName + lastName + "\nYour details are as follows: \nAddress: " + address + "\nPhone number: " + phone;
+                message.Body = "Thank you " + firstName + " " +  lastName + "\nYour details are as follows: \nAddress: " + address + "\nPhone number: " + phone;
                 Console.WriteLine("Pending, please wait.");
                 smtp.Send(message);
             
@@ -291,7 +291,7 @@ namespace DotNetBankApp
 
             if (File.Exists(accountNum + ".txt"))
             {
-                //string[] lines = File.ReadAllLines(accountNum + ".txt");
+                
 
                 //i only took the first 7 lines because i didn't want to print the deposit and withdraw stuff.
                 string[] lines = File.ReadLines(accountNum + ".txt").Take(7).ToArray();
@@ -350,7 +350,12 @@ namespace DotNetBankApp
 
             }
         }
-           
+
+        
+        
+
+
+
 
     }
 
