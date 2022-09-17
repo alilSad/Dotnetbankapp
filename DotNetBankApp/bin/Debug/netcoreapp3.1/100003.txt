@@ -1,7 +1,0 @@
-First Name|bum
-Last Name|pep
-Address|pasdasp
-Phone|1234567890
-Email|music.oxide1@gmail.com
-AccountNo|100003
-Balance|0

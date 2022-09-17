@@ -12,9 +12,11 @@ namespace DotNetBankApp
         public static string temp = "";
         
 
-        static void enterDetails()
+        public static void EnterDetails()
         {
-
+            unInput = "";
+            passInput = "";
+            correctDeet = false;
             
 
             Console.WriteLine("------------------------------------------");
@@ -117,7 +119,7 @@ namespace DotNetBankApp
                     Console.WriteLine("\nInvalid details, press any key to try again");
                     Console.ReadKey();
                     Console.Clear();
-                    enterDetails();
+                    EnterDetails();
 
                     
 
@@ -140,7 +142,7 @@ namespace DotNetBankApp
 
             //login screen 
 
-            enterDetails();
+            EnterDetails();
 
 
         }

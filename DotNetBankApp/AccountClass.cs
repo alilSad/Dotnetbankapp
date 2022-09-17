@@ -14,6 +14,7 @@ namespace DotNetBankApp
         public static int menuOption;
         public static int number;
 
+
         public static string firstName;
         public static string lastName;
         public static string address;
@@ -79,25 +80,29 @@ namespace DotNetBankApp
             switch (menuOption) {
 
                 case 1:
-                    Option1();
+                   
+                    Option1();                   
                     break;
                 case 2:
+                  
                     Option2();
                     break;
-                case 3:
+                case 3:                 
                     AccountHandle.Option3();
                     break;
-                case 4:
-                    AccountHandle.Option4();
+                case 4:             
+                    AccountHandle.Option4();                    
                     break;
                 case 5:
-                    Option5();
+
+                    Option5();                    
                     break;
                 case 6:
 
+                    Option6();
                     break;
                 case 7:
-
+                    Program.EnterDetails();
                     break;
 
 
@@ -283,16 +288,13 @@ namespace DotNetBankApp
 
             Console.SetCursorPosition(16, 5);
             string accountNum;
-
-            
-            
-                accountNum = Console.ReadLine();
-                Console.WriteLine("\n");
+            accountNum = Console.ReadLine();
+            Console.WriteLine("\n");
 
 
-            if (File.Exists(accountNum + ".txt"))
+            if (Search(accountNum))
             {
-                
+
 
                 //i only took the first 7 lines because i didn't want to print the deposit and withdraw stuff.
                 string[] lines = File.ReadLines(accountNum + ".txt").Take(7).ToArray();
@@ -320,7 +322,8 @@ namespace DotNetBankApp
                     Option2();
 
                 }
-                else {
+                else
+                {
                     Console.Clear();
                     MainMenu();
                 }
@@ -329,27 +332,10 @@ namespace DotNetBankApp
 
 
 
-            } else if (!int.TryParse(accountNum, out accountNumber))
-            {
-                Console.WriteLine("\nPlease put a proper account number");
-                Console.ReadKey();
-                Console.Clear();
+            }
+            else {
                 Option2();
-
-            } else if (accountNum.Length > 10)
-            {
-                Console.WriteLine("\nPlease put a proper account number");
-                Console.ReadKey();
-                Console.Clear();
-                Option2();
-
-            } else {
-
-                Console.WriteLine("Account file could not be found.");
-                Console.ReadKey();
-                Console.Clear();
-                Option2();
-
+            
             }
         }
 
@@ -505,6 +491,115 @@ namespace DotNetBankApp
 
         }
 
+        static void Option6() {
+
+            string accountNum;
+
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("             Delete an account            ");
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("           Enter account number           ");
+            Console.WriteLine("\nAccount Number:                         ");
+            Console.WriteLine("------------------------------------------");
+
+            Console.SetCursorPosition(16, 5);
+
+            
+            accountNum = Console.ReadLine();
+            if (Search(accountNum))
+            {
+                present(accountNum);
+
+                Console.WriteLine("Are you sure you want to delete this account? \n Enter Y to confirm. Enter any other button to go back to menu.");
+
+                if (Console.ReadLine() == "y")
+                {
+                    File.Delete(accountNum + ".txt");
+                    Console.WriteLine("Account deleted. Press any button to return to the menu");
+                    Console.ReadKey();
+                    Console.Clear();
+                    MainMenu();
+
+
+                }
+                else
+                {
+                    Console.Clear();
+                    MainMenu();
+                }
+
+
+            }
+            else {
+
+                Option6();
+            
+            }
+            
+
+
+
+        }
+
+
+        public static bool Search(string accountNum) {
+
+
+           
+            Console.WriteLine("\n");
+
+            if (File.Exists(accountNum + ".txt"))
+            {
+
+                return true;
+
+            }
+            else if (!int.TryParse(accountNum, out accountNumber) | accountNum.Length > 10)
+            {
+                
+                Console.WriteLine("\nPlease put a proper account number");
+                Console.ReadKey();
+                Console.Clear();
+                return false;
+
+            }
+            
+            else
+            {
+                
+                Console.WriteLine("\nAccount not found.");
+                Console.ReadKey();
+                Console.Clear();
+                return false;
+            }
+
+            
+
+        }
+
+
+        static void present(string accountNum) {
+
+            string[] lines = File.ReadLines(accountNum + ".txt").Take(7).ToArray();
+
+
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("              Account Details             ");
+            Console.WriteLine("------------------------------------------");
+
+            foreach (string set in lines)
+            {
+
+                string[] splits = set.Split('|');
+
+
+                Console.WriteLine("{0}: {1}", splits[0], splits[1]);
+
+            }
+
+            Console.WriteLine("------------------------------------------");
+
+        }
 
 
     }
