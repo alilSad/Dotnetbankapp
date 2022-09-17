@@ -52,6 +52,8 @@ namespace DotNetBankApp
 
             Console.SetCursorPosition(16, 5);
 
+            
+
             try
             {
                 accountNum = Console.ReadLine();
@@ -110,11 +112,22 @@ namespace DotNetBankApp
 
 
                                 Console.WriteLine("\n Successfully added $" + deposit + " to the account.");
-                                Console.WriteLine("\n Press any button to return to the main menu");
 
-                                Console.ReadKey();
-                                Console.Clear();
-                                AccountClass.MainMenu();
+                                Console.WriteLine("Would you like to deposit more? Enter Y to confirm.\n Press any other button to go back to the menu.");
+
+                                if (Console.ReadLine() == "y")
+                                {
+                                    Console.Clear();
+                                    Option3();
+
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    AccountClass.MainMenu();
+                                }
+
+                                
 
                             }
 
@@ -151,7 +164,7 @@ namespace DotNetBankApp
 
             }
 
-            //fix this
+            
             catch (InvalidCastException e)
             {
 
@@ -182,7 +195,7 @@ namespace DotNetBankApp
             Console.WriteLine("------------------------------------------");
 
             Console.SetCursorPosition(16, 5);
-
+            
             try
             {
                 accountNum = Console.ReadLine();
@@ -252,12 +265,21 @@ namespace DotNetBankApp
 
 
                                 Console.WriteLine("\n Successfully taken $" + withdraw + " from the account.");
-                                Console.WriteLine("\n Press any button to return to the main menu");
+                                Console.WriteLine("Would you like to withdraw more? Enter Y to confirm.\n Press any other button to go back to the menu.");
 
-                                Console.ReadKey();
-                                Console.Clear();
-                                AccountClass.MainMenu();
+                                if (Console.ReadLine() == "y")
+                                {
+                                    Console.Clear();
+                                    Option4();
 
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    AccountClass.MainMenu();
+                                }
+
+                              
                             }
 
                         }

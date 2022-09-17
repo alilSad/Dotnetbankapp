@@ -11,6 +11,8 @@ namespace DotNetBankApp
     class AccountClass
     {
 
+        
+
         public static int menuOption;
         public static int number;
 
@@ -26,6 +28,8 @@ namespace DotNetBankApp
         
 
         public static void MainMenu() {
+
+            
 
             Console.WriteLine("------------------------------------------");
             Console.WriteLine("        Welcome to Simple Banking         ");
@@ -111,84 +115,96 @@ namespace DotNetBankApp
 
         static void Option1() {
 
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("            Create a new Account             ");
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("       Enter customer details below:         ");
-            Console.WriteLine("                                             ");
-            Console.WriteLine("First name:                                  ");
-            Console.WriteLine("Last name:                                   ");
-            Console.WriteLine("Address:                                     ");
-            Console.WriteLine("Phone number:                                ");
-            Console.WriteLine("Email:                                       ");
-            Console.WriteLine("---------------------------------------------");
+            
 
-            Console.SetCursorPosition(12, 5);
-            firstName = Console.ReadLine();
-            Console.SetCursorPosition(11, 6);
-            lastName = Console.ReadLine();
-            Console.SetCursorPosition(9, 7);
-            address = Console.ReadLine();
-            Console.SetCursorPosition(14, 8);
-            phone = Console.ReadLine();
-            Console.SetCursorPosition(7, 9);
-            email = Console.ReadLine();
+                Console.WriteLine("---------------------------------------------");
+                Console.WriteLine("            Create a new Account             ");
+                Console.WriteLine("---------------------------------------------");
+                Console.WriteLine("       Enter customer details below:         ");
+                Console.WriteLine("                                             ");
+                Console.WriteLine("First name:                                  ");
+                Console.WriteLine("Last name:                                   ");
+                Console.WriteLine("Address:                                     ");
+                Console.WriteLine("Phone number:                                ");
+                Console.WriteLine("Email:                                       ");
+                Console.WriteLine("---------------------------------------------");
+
+
+
+                Console.SetCursorPosition(12, 5);
+
+
+
+                firstName = Console.ReadLine();
+                Console.SetCursorPosition(11, 6);
+                lastName = Console.ReadLine();
+                Console.SetCursorPosition(9, 7);
+                address = Console.ReadLine();
+                Console.SetCursorPosition(14, 8);
+                phone = Console.ReadLine();
+                Console.SetCursorPosition(7, 9);
+                email = Console.ReadLine();
+
+
+
+                Console.SetCursorPosition(0, 11);
+
+                // check phone and email
+                if (!int.TryParse(phone, out number))
+                {
+                    Console.WriteLine("Please put a proper phone number.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Option1();
+
+
+                }
+                else if (phone.Length != 10)
+                {
+                    Console.WriteLine("Please put a proper phone number.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Option1();
+
+                }
+
+                if (!validEmail())
+                {
+                    Console.WriteLine("Please put a valid email.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Option1();
+
+                }
+
+                //check if the info is correct? 
+                Console.WriteLine("\nWould you like to submit these details? Enter Y to confirm, \nEnter any other button to try again");
+
+                if (Console.ReadLine() == "y")
+                {
+                    Option1Confirm();
+
+                }
+                else
+                {
+                    Console.Clear();
+                    Option1();
+
+                }
+
+
+                Console.WriteLine("------------------------------------------");
+                Console.WriteLine("Account created. Details will be provided via email");
+                Console.WriteLine("Account number is: " + accountNumber);
+                Console.WriteLine("Press any button to go back to the menu");
+                Console.ReadKey();
+                Console.Clear();
+                MainMenu();
 
             
 
-            Console.SetCursorPosition(0, 11);
-
-            // check phone and email
-            if (!int.TryParse(phone, out number))
-            {
-                Console.WriteLine("Please put a proper phone number.");
-                Console.ReadKey();
-                Console.Clear();
-                Option1();
-
-
-            }
-            else if (phone.Length != 10)
-            {
-                Console.WriteLine("Please put a proper phone number.");
-                Console.ReadKey();
-                Console.Clear();
-                Option1();
-
-            }
-
-            if (!validEmail()) {
-                Console.WriteLine("Please put a valid email.");
-                Console.ReadKey();
-                Console.Clear();
-                Option1();
             
             }
-
-            //check if the info is correct? 
-            Console.WriteLine("\nWould you like to submit these details? Enter Y to confirm, \nEnter any other button to try again");
-
-            if (Console.ReadLine() == "y")
-            {
-                Option1Confirm();
-
-            }
-            else {
-                Console.Clear();
-                Option1();
-            
-            }
-
-
-            Console.WriteLine("------------------------------------------");
-            Console.WriteLine("Account created. Details will be provided via email");
-            Console.WriteLine("Account number is: " + accountNumber);
-            Console.WriteLine("Press any button to go back to the menu");
-            Console.ReadKey();
-            Console.Clear();
-            MainMenu();
-
-        }
 
 
         // email checker
@@ -283,6 +299,8 @@ namespace DotNetBankApp
             Console.WriteLine("------------------------------------------");
 
             Console.SetCursorPosition(16, 5);
+            
+
             string accountNum;
             accountNum = Console.ReadLine();
             Console.WriteLine("\n");
@@ -324,6 +342,7 @@ namespace DotNetBankApp
 
 
             Console.SetCursorPosition(16, 5);
+            
             string accountNum;
             string temp;
             accountNum = Console.ReadLine();
@@ -538,6 +557,9 @@ namespace DotNetBankApp
             Console.WriteLine("------------------------------------------");
 
         }
+
+
+        
 
 
     }

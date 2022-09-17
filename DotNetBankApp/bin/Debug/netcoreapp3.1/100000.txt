@@ -4,7 +4,7 @@ Address|poop house
 Phone|1234567890
 Email|dotnettestmail33@gmail.com
 AccountNo|100000
-Balance|227
+Balance|229
 17.09.2022|Deposit|100|100
 17.09.2022|Withdraw|100|0
 17.09.2022|Deposit|100|100
@@ -12,3 +12,6 @@ Balance|227
 17.09.2022|Deposit|100|200
 17.09.2022|Deposit|20|220
 17.09.2022|Deposit|7|227
+18.09.2022|Deposit|10|237
+18.09.2022|Deposit|2|239
+18.09.2022|Withdraw|10|229
