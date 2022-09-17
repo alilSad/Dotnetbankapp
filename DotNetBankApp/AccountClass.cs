@@ -21,6 +21,7 @@ namespace DotNetBankApp
         public static string email;
 
         public static int accountNumber;
+        public static string sendThis;
         
 
         public static void MainMenu() {
@@ -87,10 +88,10 @@ namespace DotNetBankApp
                     AccountHandle.Option3();
                     break;
                 case 4:
-
+                    AccountHandle.Option4();
                     break;
                 case 5:
-
+                    Option5();
                     break;
                 case 6:
 
@@ -250,7 +251,7 @@ namespace DotNetBankApp
 
                 message.From = new MailAddress("dotnettestmail33@gmail.com");
                 message.To.Add(new MailAddress("dotnettestmail33@gmail.com"));
-                message.Subject = "Test";
+                message.Subject = "Online Banking Details";
                 message.Body = "Thank you " + firstName + " " +  lastName + "\nYour details are as follows: \nAddress: " + address + "\nPhone number: " + phone;
                 Console.WriteLine("Pending, please wait.");
                 smtp.Send(message);
@@ -295,6 +296,7 @@ namespace DotNetBankApp
 
                 //i only took the first 7 lines because i didn't want to print the deposit and withdraw stuff.
                 string[] lines = File.ReadLines(accountNum + ".txt").Take(7).ToArray();
+
 
                 Console.WriteLine("------------------------------------------");
                 Console.WriteLine("              Account Details             ");
@@ -351,9 +353,157 @@ namespace DotNetBankApp
             }
         }
 
-        
-        
 
+        static void Option5() {
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("             Account Statement            ");
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("           Enter account number           ");
+            Console.WriteLine("\nAccount Number:                         ");
+            Console.WriteLine("------------------------------------------");
+
+
+            Console.SetCursorPosition(16, 5);
+            string accountNum;
+            string temp;
+            accountNum = Console.ReadLine();
+            Console.WriteLine("\n");
+            sendThis = "";
+
+            if (File.Exists(accountNum + ".txt"))
+            {
+
+
+                
+                string[] lines = File.ReadLines(accountNum + ".txt").Reverse().Take(5).ToArray();
+
+                
+
+                foreach (string set in lines)
+                {
+
+                    string[] splits = set.Split('|');
+
+                    try
+                    {
+                        if (splits[1].Contains("Deposit") | splits[1].Contains("Withdraw"))
+                        {
+
+                            temp = splits[0] + " " + splits[1] + " amount: $" + splits[2] + " total balance: $" + splits[3];
+                            sendThis += "\n" + temp;
+                            Console.WriteLine(temp);
+                        }
+                        else if (!File.ReadAllText(accountNum + ".txt").Contains("Deposit") | !File.ReadAllText(accountNum + ".txt").Contains("Withdraw"))
+                        {
+
+                            Console.WriteLine("No transactions found in account. Press any button to go back to the menu.");
+                            Console.ReadKey();
+                            Console.Clear();
+                            MainMenu();
+
+                        }
+
+                       
+                    }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        
+                    
+                    }
+                    
+
+                }
+                
+
+                
+
+                Console.WriteLine("------------------------------------------");
+                Console.WriteLine("Would you like to email the statement? Enter Y to confirm. \nOr any other key to exit to menu.");
+                if (Console.ReadLine() == "y")
+                {
+                    Option5Confirm();
+
+                }
+                else
+                {
+                    Console.Clear();
+                    MainMenu();
+                }
+
+
+                Console.WriteLine("Email has been sent. Press any button to go back to the main menu.");
+                Console.ReadKey();
+                Console.Clear();
+                MainMenu();
+
+
+            }
+            else if (!int.TryParse(accountNum, out accountNumber))
+            {
+                Console.WriteLine("\nPlease put a proper account number");
+                Console.ReadKey();
+                Console.Clear();
+                Option5();
+
+            }
+            else if (accountNum.Length > 10)
+            {
+                Console.WriteLine("\nPlease put a proper account number");
+                Console.ReadKey();
+                Console.Clear();
+                Option5();
+
+            }
+            else
+            {
+
+                Console.WriteLine("Account file could not be found.");
+                Console.ReadKey();
+                Console.Clear();
+                Option5();
+
+            }
+
+
+
+        }
+
+
+        static void Option5Confirm() {
+
+            try
+            {
+
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Credentials = new NetworkCredential("dotnettestmail33@gmail.com", "yxcurziyvoziaopv");
+
+                //format the email to look nice and relevant
+
+                message.From = new MailAddress("dotnettestmail33@gmail.com");
+                message.To.Add(new MailAddress("dotnettestmail33@gmail.com"));
+                message.Subject = "Bank statement";
+                message.Body = "Here is your bank statement: \n" + sendThis;
+                Console.WriteLine("Pending, please wait.");
+                smtp.Send(message);
+
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.ReadLine();
+            }
+
+
+        }
 
 
 
